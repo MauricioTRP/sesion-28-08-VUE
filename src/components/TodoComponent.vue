@@ -1,26 +1,7 @@
 <script>
 export default {
   name: 'TodoComponent',
-  data() {
-    return {
-      nuevaTarea: '',
-      tareas: []
-    }
-  },
-  methods: {
-    agregarTarea() {
-      // Variable temporal para obtener la nueva tarea
-      const tareaAgregar = this.nuevaTarea
-
-      // Push al arreglo de tareas
-      this.tareas.push(tareaAgregar)
-
-      // Limpiamos variable de estado nuevaTarea
-      this.nuevaTarea = ''
-
-      console.log(this.tareas)
-    }
-  }
+  props: ['listaTareas'] // listaTareas: Array
 }
 </script>
 <template>
@@ -30,7 +11,10 @@ export default {
   </form>
 
   <ul>
-    <li v-for="(tarea, idx) in tareas" :key="idx">{{ tarea }}, indice: {{ idx }}</li>
+    <li v-for="(tarea, idx) in listaTareas" :key="idx">
+      {{ tarea }}, indice: {{ idx }}
+      <button @click="$emit('eliminarTarea', idx)">Eliminar Tarea</button>
+    </li>
   </ul>
 </template>
 <style></style>

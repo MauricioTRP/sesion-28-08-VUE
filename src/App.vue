@@ -1,18 +1,21 @@
 <script>
 // import ComponenteSaludador from './components/ComponenteSaludador.vue'
-// import TodoComponent from './components/TodoComponent.vue'
+import TodoComponent from './components/TodoComponent.vue'
 // import KeyEvents from './components/KeyEvents.vue'
 import HeaderComponent from './components/HeaderComponent.vue'
 import HeroComponent from './components/HeroComponent.vue'
 import PersonCard from './components/PersonCard.vue'
 import InstrumentsCard from './components/InstrumentsCard.vue'
+import SlotComponent from './components/SlotComponent.vue'
 
 export default {
   components: {
     HeaderComponent,
     HeroComponent,
     PersonCard,
-    InstrumentsCard
+    InstrumentsCard,
+    TodoComponent,
+    SlotComponent
   },
   data() {
     return {
@@ -49,34 +52,38 @@ export default {
           foto: 'https://m.media-amazon.com/images/I/51TivJrmiaL._AC_.jpg',
           precio: '499.900'
         }
-      ]
+      ],
+      listaTareas: [
+        'Pasear a la Llanka, a Arena Gruesa',
+        'Enviar emits, desde el componente hijo',
+        'Tomar once',
+        'Mirar paraolimpiadas',
+        'Escuchar música'
+      ],
+      componenteRendizar: ''
+    }
+  },
+  methods: {
+    CBeliminarInstrumento(index) {
+      this.instrumentos.splice(index, 1)
+    },
+    CBeliminarTarea(idx) {
+      console.log('indice', idx)
+      console.log('tarea a eliminar', this.listaTareas[idx])
+
+      this.listaTareas.splice(idx, 1)
     }
   }
 }
 </script>
 
 <template>
-  <HeaderComponent />
-  <!-- <HeroComponent />
-  <div class="personas">
-    <PersonCard
-      v-for="(persona, idx) in personas"
-      :key="idx"
-      :nombre="persona.nombre"
-      :foto="persona.foto"
-      :descripcion="persona.descripcion"
-    />
-  </div> -->
-
-  <div class="instrumento">
-    <InstrumentsCard
-      v-for="(instrumento, index) in instrumentos"
-      :key="index"
-      :nombre="instrumento.nombre"
-      :foto="instrumento.foto"
-      :precio="instrumento.precio"
-    />
+  <div class="buttons">
+    <button @click="componenteRendizar = 'HeaderComponent'">Header Component</button>
+    <button @click="componenteRendizar = 'HeroComponent'">Hero Component</button>
   </div>
+
+  <component :is="componenteRendizar" />
 </template>
 
 <style scoped>

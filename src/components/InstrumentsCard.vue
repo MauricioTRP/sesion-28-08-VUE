@@ -1,13 +1,14 @@
 <script>
 export default {
   name: 'InstrumentsCard',
-  props: ['foto', 'nombre', 'precio']
+  props: ['foto', 'nombre', 'precio', 'index']
 }
 </script>
 <template>
   <div class="card" :style="{ backgroundImage: `url(${foto})` }">
     <h1>{{ nombre }}</h1>
     <p>${{ precio }}</p>
+    <button @click="$emit('eliminarInstrumento', index)">Eliminar Instrumento</button>
   </div>
 </template>
 <style scoped>
