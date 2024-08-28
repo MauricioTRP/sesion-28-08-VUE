@@ -14,11 +14,12 @@ export default {
 .card {
   width: 20%;
   text-align: center;
-  background-position: top center;
-  background-size: 100px;
+  background-position: center;
+  background-size: contain;
   background-repeat: no-repeat;
   border: 1px solid lightgray;
   padding: 1rem;
+  height: 50px;
 }
 h1 {
   margin-top: 5.5rem;
